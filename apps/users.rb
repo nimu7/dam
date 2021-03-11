@@ -18,9 +18,17 @@ module Users
     user = User.new(name: params[:name])
     if user.save
       session[:user_id] = user._id
-      'accept!'
+      redirect '/me'
     else
       redirect '/signup'
     end
+  end
+
+  Base.get '/me' do
+    @user = User.where(_id: session[:user_id]).first
+
+    redirect '/signup' unless @user
+
+    haml :user_page
   end
 end
