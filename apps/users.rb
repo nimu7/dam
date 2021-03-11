@@ -14,6 +14,27 @@ module Users
     haml :signup
   end
 
+  Base.get '/signin' do
+    haml :signin
+  end
+
+  Base.post '/signin' do
+    user = User.where(name: params[:name]).first
+    if user
+      session[:user_id] = user._id
+      redirect '/me'
+    else
+      redirect '/signin'
+    end
+  end
+
+  Base.get '/signout' do
+    redirect '/signin' unless session[:user_id]
+
+    session[:user_id] = nil
+    'see you!'
+  end
+
   Base.post '/users' do
     user = User.new(name: params[:name])
     if user.save

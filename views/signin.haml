@@ -1,0 +1,8 @@
+%h1 Signin
+%form{:action => '/signin', :method => 'post'}
+  %fieldset
+    %p  
+      %label{:for => "name"} Name:
+      %input{:name => "name", :type => "text", :value => ""}
+    %p  
+      %input{:type => "submit", :value => "Sign In"}
