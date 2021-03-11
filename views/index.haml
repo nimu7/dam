@@ -1,0 +1,11 @@
+%h1 Dam
+
+%a{ href: '/signin' } signin
+
+%form{:action => '/messages', :method => 'post'}
+  %fieldset
+    %h3 Write new message
+    %p  
+      %textarea{:name => "content", :type => "text", :value => ""}
+    %p  
+      %input{:type => "submit", :value => "Send"}
